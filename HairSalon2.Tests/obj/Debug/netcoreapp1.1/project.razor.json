@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "/Users/CristianLucero1/Desktop/HairSalon2.Solution/HairSalon2.Tests/HairSalon2.Tests.csproj",
+  "TargetFramework": "netcoreapp1.1",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
