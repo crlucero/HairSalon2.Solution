@@ -23,6 +23,14 @@ namespace HairSalon.Controllers
             model.Add("stylist", stylist);
             return View(model);
         }
+        [HttpGet("/client/{id}/delete")]
+        public ActionResult DeleteClient(int id)
+        {
+            Client thisClient = Client.Find(id);
+            Client.DeleteClient(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

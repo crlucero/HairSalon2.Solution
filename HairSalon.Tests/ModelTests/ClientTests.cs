@@ -130,6 +130,22 @@ namespace HairSalon.Tests
             //Assert
             Assert.AreEqual(testId, result);
         }
+        [TestMethod]
+        public void Delete_ClientIsDeletedFromDB_True()
+        {
+            //Arrange
+            Client clientOne = new Client("sammy", 1);
+            clientOne.Save();
+            int id = clientOne.GetId();
+            Client defaultValues = new Client("", 0);
+
+            //Act
+            Client.DeleteClient(id);
+            Client notFound = Client.Find(id);
+
+            //Assert
+            Assert.AreEqual(notFound, defaultValues);
+        }
 
     }
 }

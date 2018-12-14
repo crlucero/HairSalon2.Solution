@@ -1,13 +1,21 @@
-<h1>To Do List Item Details: </h1>
-
-<h2>@Model["item"].GetDescription()</h2>
-<h3>Category: @Model["category"].GetName()</h3>
-
-
-<a href='/categories/@Model["category"].GetId()/items/@Model["item"].GetId()/edit'>Edit this Item</a>
+@{
+  Layout = "_Layout";
+}
+<div class="container">
 <br>
-<a href='/categories/@Model["category"].GetId()/items/new'>Add a new item</a>
+
+<h3>Client Details: </h3>
+<hr>
+
+<h4>Name: @Model["client"].GetName()</h4>
 <br>
-<p><a href='/categories/@Model["category"].GetId()/items/@Model["item"].GetId()/delete'>Delete this item</a></p>
+<h4>Stylist: @Model["stylist"].GetName()</h4>
 <br>
-<a href='/categories'>View all categories</a>
+
+
+<a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/edit'>Edit this client</a>
+<br>
+<p><a href='/clients/@Model["client"].GetId()/delete'>Delete this client</a></p>
+<br>
+<a href='/stylists'>View all stylists</a>
+</div>
