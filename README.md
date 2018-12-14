@@ -32,12 +32,16 @@ In MySQL:
 * USE cristian_lucero;
 * CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255))
 * CREATE TABLE clients(id serial PRIMARY KEY, name VARCHAR(255, int stylist_id)
+* CREATE TABLE specialties(id serial PRIMARY KEY, name VARCHAR(255))
+* CREAT TABLE stylists_specialties(id serial PRIMARY KEY, stylist_id INT(11), specialty_id INT (11))
 ## Replicate steps for test database.
 In MySQL:
 * CREATE DATABASE cristian_lucero_test;
 * USE cristian_lucero_test;
 * CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255))
 * CREATE TABLE clients(id serial PRIMARY KEY, name VARCHAR(255, int stylist_id)
+* CREATE TABLE specialties(id serial PRIMARY KEY, name VARCHAR(255))
+* CREAT TABLE stylists_specialties(id serial PRIMARY KEY, stylist_id INT(11), specialty_id INT (11))
 
 
 
