@@ -1,4 +1,4 @@
-# Hair Salon, 12_7_18
+# Hair Salon, 12_14_18
 
 #### This website is an application that simulates a hair salon.
 
