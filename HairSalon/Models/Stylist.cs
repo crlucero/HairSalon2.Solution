@@ -123,6 +123,20 @@ namespace HairSalon.Models
             return allStylistClients;
         }
 
+        public static void Edit(int id, string name)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = '" + name + "' WHERE id = " + id + ";";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public static void DeleteStylist(int id)
         {
             MySqlConnection conn = DB.Connection();
