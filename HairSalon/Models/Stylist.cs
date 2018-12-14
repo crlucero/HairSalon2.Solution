@@ -123,6 +123,25 @@ namespace HairSalon.Models
             return allStylistClients;
         }
 
+        public static void DeleteStylist(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM stylists WHERE id = (@thisId);";
+
+            MySqlParameter thisId = new MySqlParameter();
+            thisId.ParameterName = "@thisId";
+            thisId.Value = id;
+            cmd.Parameters.Add(thisId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public static void ClearAll()
         {
             MySqlConnection conn = DB.Connection();
@@ -146,9 +165,9 @@ namespace HairSalon.Models
             else
             {
                 Stylist newStylist = (Stylist)otherStylist;
-                bool idEquality = this.GetId().Equals(newStylist.GetId());
+                
                 bool nameEquality = this.GetName().Equals(newStylist.GetName());
-                return (idEquality && nameEquality);
+                return (nameEquality);
             }
         }
 

@@ -14,6 +14,8 @@
 @foreach (var stylist in Model)
 {
   <h3><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></h3>
+  <p><a href="/stylists/@stylist.GetId()/delete">Delete this stylist</a></p>
+  <hr>
 }
 
 <br>

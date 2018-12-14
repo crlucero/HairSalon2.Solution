@@ -157,6 +157,24 @@ namespace HairSalon.Tests
             //Assert
             Assert.AreEqual(0, result);
         }
+
+        [TestMethod]
+        public void Stylist_StylistDeletedFromDB_True()
+        {
+            //Arrange
+            Stylist stylistOne = new Stylist("jon");
+            stylistOne.Save();
+            int id = stylistOne.GetId();
+            Stylist defaultStylist = new Stylist("");
+
+            //Act
+            Stylist.DeleteStylist(id);
+            Stylist notFound = Stylist.Find(id);
+
+            //Assert
+            Assert.AreEqual(notFound, defaultStylist);
+        }
+
     }
  
 }
