@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 07, 2018 at 10:14 PM
+-- Generation Time: Dec 15, 2018 at 01:12 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -39,9 +39,24 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `stylist_id`) VALUES
-(1, 'Sally', 3),
-(2, 'Sally', 3),
-(3, 'Sarah', 1);
+(6, 'Hannah', 5),
+(7, 'Taylor', 1),
+(8, 'Sarah', 1),
+(9, 'Sally', 5),
+(10, 'Sarah', 6),
+(11, 'Client 1', 8),
+(12, 'Client 2', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialties`
+--
+
+CREATE TABLE `specialties` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -59,9 +74,19 @@ CREATE TABLE `stylists` (
 --
 
 INSERT INTO `stylists` (`id`, `name`) VALUES
-(1, 'Sienna'),
-(2, 'Victoria'),
-(3, 'Jamie');
+(9, 'Hannah');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stylists_specialties`
+--
+
+CREATE TABLE `stylists_specialties` (
+  `id` int(11) NOT NULL,
+  `stylist_id` int(11) NOT NULL,
+  `specialty_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -74,9 +99,21 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `specialties`
+--
+ALTER TABLE `specialties`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stylists`
 --
 ALTER TABLE `stylists`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stylists_specialties`
+--
+ALTER TABLE `stylists_specialties`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -87,13 +124,25 @@ ALTER TABLE `stylists`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `specialties`
+--
+ALTER TABLE `specialties`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `stylists_specialties`
+--
+ALTER TABLE `stylists_specialties`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
