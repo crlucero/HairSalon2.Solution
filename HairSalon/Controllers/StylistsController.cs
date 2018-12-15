@@ -24,16 +24,34 @@ namespace HairSalon.Controllers
         }
 
         // SHOWS STYLIST DETAILS
-        [HttpGet("/stylists/{id}")]
-        public ActionResult Show(int id)
+        // [HttpGet("/stylists/{id}")]
+        // public ActionResult Show(int id)
+        // {
+        //     Dictionary<string, object> model = new Dictionary<string, object>();
+        //     Stylist selectedStylist = Stylist.Find(id);
+        //     List<Client> stylistClients = selectedStylist.GetClients();
+        //     model.Add("stylist", selectedStylist);
+        //     model.Add("clients", stylistClients);
+        //     return View(model);
+        // }
+
+        [HttpGet("/stylists/{stylistId}")]
+        public ActionResult Show(int stylistId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
-            Stylist selectedStylist = Stylist.Find(id);
-            List<Client> stylistClients = selectedStylist.GetClients();
+            Stylist selectedStylist = Stylist.Find(stylistId);
+            List<Client> stylistClients = Client.GetAll();
+            List<Specialty> specialties = selectedStylist.GetSpecialties();
+            List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("stylist", selectedStylist);
             model.Add("clients", stylistClients);
+            model.Add("specialties", specialties);
+            model.Add("allspecialties", allSpecialties);
             return View(model);
         }
+
+
+
 
         [HttpPost("/stylists/{id}")]
         public ActionResult Create(int stylistId, string clientName)
@@ -47,6 +65,25 @@ namespace HairSalon.Controllers
             model.Add("stylist", foundStylist);
             return View("Show", model);
         }
+
+        [HttpPost("/stylists/{id}/specialty/new")]
+        public ActionResult AddSpecialty(int id, int specialtyId)
+        {
+            Stylist foundStylist = Stylist.Find(id);
+            Specialty foundSpecialty = Specialty.Find(specialtyId);
+            foundStylist.AddSpecialty(foundSpecialty);
+
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            List<Client> stylistClients = Client.GetAll();
+            List<Specialty> specialties = foundStylist.GetSpecialties();
+            List<Specialty> allSpecialties = Specialty.GetAll();
+            model.Add("stylist", foundStylist);
+            model.Add("clients", stylistClients);
+            model.Add("specialties", specialties);
+            model.Add("allspecialties", allSpecialties);
+            return View("Show", model);
+        }
+
 
 
         [HttpGet("/stylists/new")]

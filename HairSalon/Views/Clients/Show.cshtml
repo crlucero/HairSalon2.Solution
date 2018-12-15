@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+<h1>Details for client: @Model.GetName()</h1>
+
+<h4>name: @Model.GetName()</h4>
+<h4>id: @Model.GetId()</h4>
+
+
+<p>Edit the name of this client:</p>
+<form action='/stylists/@Model.GetId()/clients/@Model.GetId()/update' method='post'>
+  <label for='newName'>New Client name: </label>
+  <input id='newName' name='newName' type='text'>
+  <button class="btn btn-info" type='submit'>Change Name</button>
+</form>
+
+</div>
+

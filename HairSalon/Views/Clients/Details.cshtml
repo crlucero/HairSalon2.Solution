@@ -12,8 +12,13 @@
 <h4>Stylist: @Model["stylist"].GetName()</h4>
 <br>
 
+<p>Edit the name of this client:</p>
+<form action='/clients/@Model["client"].GetId()/edit' method='post'>
+  <label for='name'>Edit this client's name: </label>
+  <input id='newName' name='newName' type='text'>
+  <button class="btn btn-primary"type='submit'>Change Name</button>
+</form>
 
-<a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/edit'>Edit this client</a>
 <br>
 <p><a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/delete'>Delete this client</a></p>
 <br>

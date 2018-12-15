@@ -1,0 +1,25 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h4>Specialty: @Model["specialty"].GetSpecialtyName()</h4>
+
+<p>Here are our stylists who perfom this specialty:</p>
+@foreach (var stylist in Model["stylists"])
+{
+    <li>@stylist.GetName()</li>
+}
+
+<h4>Add a stylist to this specialty.</h4>
+
+<form action="/specialties/@Model["specialty"].GetId()/specialty/new" method="post">
+    <select name="specialtyId" >
+            @foreach(var stylist in @Model["allStylists"])
+            {
+                <option class="dropdown-item" value=@stylist.GetId()>@stylist.GetName()</option>
+            }
+    </select>
+     <button class="btn btn-primary btn-md" type="submit">Add</button>
+</form>
+</div>

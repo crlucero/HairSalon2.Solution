@@ -137,6 +137,62 @@ namespace HairSalon.Models
             }
         }
 
+        public void AddSpecialty(Specialty newSpecialty)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO stylists_specialties (stylist_id, specialty_id) VALUES (@StylistsId, @SpecialtyId);";
+
+            MySqlParameter Stylists_id = new MySqlParameter();
+            Stylists_id.ParameterName = "@StylistsId";
+            Stylists_id.Value = _id;
+            cmd.Parameters.Add(Stylists_id);
+
+            MySqlParameter Specialty_id = new MySqlParameter();
+            Specialty_id.ParameterName = "@SpecialtyId";
+            Specialty_id.Value = newSpecialty.GetId();
+            cmd.Parameters.Add(Specialty_id);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+        }
+
+        public List<Specialty> GetSpecialties()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT specialties.* FROM stylists
+                JOIN stylists_specialties ON (stylists.id = stylists_specialties.stylist_id)
+                JOIN specialties ON (stylists_specialties.specialty_id = specialties.id)
+                WHERE stylists.id = @stylistsId;";
+            MySqlParameter stylistsIdParameter = new MySqlParameter();
+            stylistsIdParameter.ParameterName = "@stylistsId";
+            stylistsIdParameter.Value = _id;
+            cmd.Parameters.Add(stylistsIdParameter);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            List<Specialty> specialties = new List<Specialty> { };
+            while (rdr.Read())
+            {
+                int SpecialtyId = rdr.GetInt32(0);
+                string SpecialtyName = rdr.GetString(1);
+                Specialty newSpecialty = new Specialty(SpecialtyName, SpecialtyId);
+                specialties.Add(newSpecialty);
+            }
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return specialties;
+        }
+
 
         public static void DeleteStylist(int id)
         {
