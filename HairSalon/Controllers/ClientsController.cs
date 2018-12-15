@@ -6,11 +6,18 @@ namespace HairSalon.Controllers
 {
     public class ClientsController : Controller
     {
+        [HttpGet("/clients")]
+        public ActionResult Index()
+        {
+            List<Client> allClients = Client.GetAll();
+            return View(allClients);
+        }
+
         [HttpGet("/stylists/{stylistId}/clients/new")]
         public ActionResult New(int stylistId)
         {
             Stylist stylist = Stylist.Find(stylistId);
-            return View(stylistId);
+            return View(stylist);
         }
 
         [HttpGet("/stylists/{stylistId}/clients/{clientId}")]
@@ -40,8 +47,5 @@ namespace HairSalon.Controllers
             Client updatedClient = Client.Find(id);
             return View("Details", updatedClient);
         }
-
-
-
     }
 }

@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+
+   
+
+    <h3>Here is a list of all our current clients!</h3>
+        @foreach (var client in Model)
+        {
+            <li>@client.GetName()</li>
+        }
+
+</div>

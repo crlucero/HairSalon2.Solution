@@ -8,18 +8,18 @@
 <p>Here are our stylists who perfom this specialty:</p>
 @foreach (var stylist in Model["stylists"])
 {
-    <li>@Model.GetName()</li>
+    <li>@stylist.GetName()</li>
 }
 
 <h4>Add a stylist to this specialty.</h4>
 
 <form action="/specialties/@Model["specialty"].GetId()/specialty/new" method="post">
-    <select name="specialtyId" >
+    <select name="stylistId" >
             @foreach(var stylist in @Model["allStylists"])
             {
                 <option class="dropdown-item" value=@stylist.GetId()>@stylist.GetName()</option>
             }
     </select>
-     <button class="btn btn-primary btn-md" type="submit">Add</button>
+     <button class="btn btn-primary" type="submit">Add</button>
 </form>
 </div>
