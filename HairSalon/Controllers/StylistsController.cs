@@ -66,10 +66,10 @@ namespace HairSalon.Controllers
         public ActionResult Edit(int id)
         {
             Stylist stylist = Stylist.Find(id);
-            return View("Update", stylist);
+            return View("Edit", stylist);
         }
 
-        [HttpPost("/stylists/{id}/edit")]
+        [HttpPost("/stylists/{id}/update")]
         public ActionResult Update(int id, string stylistName)
         {
             Stylist.Edit(id, stylistName);
