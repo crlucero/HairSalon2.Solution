@@ -137,6 +137,7 @@ namespace HairSalon.Models
             }
         }
 
+
         public static void DeleteStylist(int id)
         {
             MySqlConnection conn = DB.Connection();

@@ -62,17 +62,17 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("stylists/{stylistId}/update")]
+        [HttpGet("/stylists/{id}/edit")]
         public ActionResult Edit(int id)
         {
-            Stylist newStylist = Stylist.Find(id);
-            return View("Update", newStylist);
+            Stylist stylist = Stylist.Find(id);
+            return View("Update", stylist);
         }
 
-        [HttpPost("stylists/{stylistId}/edit")]
-        public ActionResult Update(int id, string newName)
+        [HttpPost("/stylists/{id}/edit")]
+        public ActionResult Update(int id, string stylistName)
         {
-            Stylist.Edit(id, newName);
+            Stylist.Edit(id, stylistName);
             return RedirectToAction("Show", id);
         }
 
