@@ -50,9 +50,6 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
-
-
-
         [HttpPost("/stylists/{id}")]
         public ActionResult Create(int stylistId, string clientName)
         {
@@ -114,8 +111,6 @@ namespace HairSalon.Controllers
         {
             Stylist.Edit(id, stylistName);
             return RedirectToAction("Show", id);
-        }
-
-        
+        } 
     }
 }
