@@ -130,21 +130,31 @@ namespace HairSalon.Tests
             //Assert
             Assert.AreEqual(testId, result);
         }
+        // [TestMethod]
+        // public void Delete_ClientIsDeletedFromDB_True()
+        // {
+        //     //Arrange
+        //     Client clientOne = new Client("sammy", 1);
+        //     clientOne.Save();
+        //     int id = clientOne.GetId();
+        //     Client defaultValues = new Client("", 0);
+
+        //     //Act
+        //     Client.DeleteClient(id);
+        //     Client notFound = Client.Find(id);
+
+        //     //Assert
+        //     Assert.AreEqual(notFound, defaultValues);
+        // }
+
         [TestMethod]
-        public void Delete_ClientIsDeletedFromDB_True()
+        public void DeleteClient_DeletesClient_Void()
         {
-            //Arrange
-            Client clientOne = new Client("sammy", 1);
-            clientOne.Save();
-            int id = clientOne.GetId();
-            Client defaultValues = new Client("", 0);
-
-            //Act
-            Client.DeleteClient(id);
-            Client notFound = Client.Find(id);
-
-            //Assert
-            Assert.AreEqual(notFound, defaultValues);
+            Client newClient = new Client("client1", 1);
+            newClient.Save();
+            newClient.DeleteClient();
+            List<Client> emptyList = new List<Client>();
+            Assert.AreEqual(emptyList.Count, Client.GetAll().Count);
         }
 
     }
