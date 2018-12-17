@@ -52,7 +52,7 @@ namespace HairSalon.Controllers
             Client foundClient = Client.Find(id);
             foundClient.EditClient(newName);
             Client updatedClient = Client.Find(id);
-            return View("Details", updatedClient);
+            return RedirectToAction("Details",updatedClient);
         }
     }
 }
