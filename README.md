@@ -47,7 +47,7 @@ In MySQL:
 
 
 ## Known Bugs
-N/A
+The only encountered bug have to do with views of edit/delete client. Although both functions do work they bring the user to an error screen, but once you go back to the see the list of clients, the user can see that the client has either been deleted, or edited(whicher function was chosen).
 
 
 ## Support and contact details
