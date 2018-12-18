@@ -31,12 +31,12 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
-        [HttpGet("clients/{id}/delete")]
+        [HttpGet("/clients/{id}/delete")]
         public ActionResult DeleteClient(int id)
         {
             Client foundClient = Client.Find(id);
             foundClient.DeleteClient();
-            return RedirectToAction("Delete");
+            return View("Details");
         }
 
         [HttpGet("/clients/delete/all")]
@@ -46,13 +46,13 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost("clients/{id}/edit")]
-        public ActionResult Edit(int id, string newName)
+        [HttpPost("/stylists/{stylistId}/clients/{clientId}/edit")]
+        public ActionResult Edit(int clientId, int stylistId, string newName)
         {
-            Client foundClient = Client.Find(id);
+            Client foundClient = Client.Find(clientId);
             foundClient.EditClient(newName);
-            Client updatedClient = Client.Find(id);
-            return RedirectToAction("Details",updatedClient);
+            Client updatedClient = Client.Find(clientId);
+            return View("Details");
         }
     }
 }

@@ -13,14 +13,14 @@
 <br>
 
 <p>Edit the name of this client:</p>
-<form action='/clients/@Model["client"].GetId()/edit' method='post'>
+<form action='/stylists/Model["stylist].GetId()/clients/@Model["client"].GetId()/edit' method='post'>
   <label for='name'>Edit this client's name: </label>
   <input id='newName' name='newName' type='text'>
   <button class="btn btn-primary"type='submit'>Change Name</button>
 </form>
 
 <br>
-<p><a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/delete'>Delete this client</a></p>
+<p><a href='/clients/@Model["client"].GetId()/delete'>Delete this client</a></p>
 <br>
 <a href='/stylists'>View all stylists</a>
 </div>
