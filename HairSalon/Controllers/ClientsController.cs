@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using System;
 
 namespace HairSalon.Controllers
 {
@@ -21,6 +22,17 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet("/stylists/{stylistId}/clients/{clientId}")]
+        public ActionResult Show(int stylistId, int clientId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>{};
+            Client foundClient = Client.Find(clientId);
+            Stylist stylist = Stylist.Find(stylistId);
+            model.Add("client", foundClient);
+            model.Add("stylist", stylist);
+            return View("Details", model);
+        }
+
+        [HttpPost("/stylists/{stylistId}/clients/{clientId}")]
         public ActionResult Details(int stylistId, int clientId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
@@ -28,7 +40,7 @@ namespace HairSalon.Controllers
             Stylist stylist = Stylist.Find(stylistId);
             model.Add("client", client);
             model.Add("stylist", stylist);
-            return View(model);
+            return View("Details", model);
         }
 
         [HttpGet("/clients/{id}/delete")]
@@ -52,7 +64,11 @@ namespace HairSalon.Controllers
             Client foundClient = Client.Find(clientId);
             foundClient.EditClient(newName);
             Client updatedClient = Client.Find(clientId);
-            return View("Details");
+            Dictionary<string, object> model = new Dictionary<string, object>{};
+            Stylist stylist = Stylist.Find(stylistId);
+            model.Add("client", updatedClient);
+            model.Add("stylist", stylistId);
+            return View("Details", model);
         }
     }
 }
