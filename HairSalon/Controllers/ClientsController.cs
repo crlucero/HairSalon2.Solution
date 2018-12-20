@@ -48,7 +48,7 @@ namespace HairSalon.Controllers
         {
             Client foundClient = Client.Find(id);
             foundClient.DeleteClient();
-            return View("Details");
+            return View("Delete");
         }
 
         [HttpGet("/clients/delete/all")]
@@ -58,6 +58,7 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
+      
         [HttpPost("/stylists/{stylistId}/clients/{clientId}/edit")]
         public ActionResult Edit(int clientId, int stylistId, string newName)
         {
